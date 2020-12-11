@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="common_header" th:remove="tag">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/static/ace/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/ace/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/ace/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" th:href="@{/static/ace/css/ace-skins.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/ace/css/ace-rtl.min.css}" />
+    <script th:src="@{/static/ace/js/ace-extra.min.js}"></script>
+    <style type="text/css">
+        body{
+            background-color:Transparent;
+        }
+    </style>
+</div>
+
+
+
+<div th:fragment="common_footer" th:remove="tag">
+    <script th:src="@{/static/ace/js/jquery-2.1.4.min.js}"></script>
+    <script th:src="@{/static/ace/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/ace/js/ace-elements.min.js}"></script>
+    <script th:src="@{/static/ace/js/ace.min.js}"></script>
+    <script th:src="@{/static/layer/layer.js}"></script>
+    <script th:src="@{/static/index/index.js}"></script>
+</div>
+
+
+
+<div th:fragment="common_datatable_head" th:remove="tag">
+    <link rel="stylesheet" th:src="@{/static/datatables/css/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" th:src="@{/static/datatables/css/dataTables.bootstrap.min.css}" />
+    <link rel="stylesheet" th:src="@{/static/datatables/css/autoFill.dataTables.css}" />
+    <link rel="stylesheet" th:src="@{/static/datatables/css/select.dataTables.min.css}" />
+</div>
+
+<!-- datatables js -->
+<div th:fragment="common_datatable_footer" th:remove="tag">
+    <script th:src="@{/static/datatables/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/static/datatables/js/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/static/datatables/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/static/datatables/js/jszip.min.js}"></script>
+    <script th:src="@{/static/datatables/js/pdfmake.min.js}"></script>
+    <script th:src="@{/static/datatables/js/buttons.colVis.js}"></script>
+    <script th:src="@{/static/datatables/js/buttons.flash.js}"></script>
+    <script th:src="@{/static/datatables/js/buttons.html5.js}"></script>
+    <script th:src="@{/static/datatables/js/buttons.print.js}"></script>
+    <script th:src="@{/static/datatables/js/dataTables.autoFill.min.js}"></script>
+    <script th:src="@{/static/datatables/js/dataTables.select.min.js}"></script>
+    <script th:src="@{/static/index/datatables/datatables-common.js}"></script>
+</div>
+
+<!-- plugins css -->
+<div th:fragment="common_plugins_head" th:remove="tag">
+    <link rel="stylesheet" th:href="@{/static/ace/css/bootstrap-datepicker3.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/select2/css/select2.css}" />
+</div>
+
+
+<!-- plugins js -->
+<div th:fragment="common_plugins_footer" th:remove="tag">
+    <script th:src="@{/static/ace/js/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{/static/ace/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+    <script th:src="@{/static/select2/js/select2.full.js}"></script>
+    <script th:src="@{/static/select2/js/i18n/zh-CN.js}"></script>
+</div>
+
+
+<div th:fragment="common_footer_copyright" th:remove="tag">
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">&copy; 东莞重力科技有限公司.版权所有</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
