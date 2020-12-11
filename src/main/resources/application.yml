@@ -1,0 +1,29 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: luwu-admin
+  profiles:
+    active: dev
+  mvc:
+    throw-exception-if-no-handler-found: true
+    log-request-details: true
+
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: net.zhongli.tech.luwu.admin.**.entity
+  mapper-locations: classpath:mapper/*/*.xml
+
+logging.level.org.springframework.boot.autoconfigure: ERROR
+
+
+
+
