@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
@@ -18,7 +19,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  * @create 2020/12/10 3:25 下午
  **/
 @ControllerAdvice
-@ResponseBody
 @Slf4j
 public class CommonExceptionHandler {
 
@@ -28,6 +28,7 @@ public class CommonExceptionHandler {
      * @return
      */
     @ExceptionHandler(ServiceException.class)
+    @ResponseBody
     public ResponseEntity<Result<Object>> handleServiceException(Exception e) {
         Result<Object> resp = new Result<>();
         ServiceException exception = (ServiceException) e;
@@ -42,25 +43,12 @@ public class CommonExceptionHandler {
     }
 
     /**
-     * 处理 404
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<Result<Object>> handlerNoFoundException(Exception e) {
-        Result<Object> resp = new Result<>();
-        resp.setCode(ResultEnum.NOT_FOUND.getCode());
-        resp.setMessage(ResultEnum.NOT_FOUND.getMsg());
-        log.error(e.getMessage(), e);
-        return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
-    }
-
-    /**
      * 参数认证错误
      * @param e
      * @return
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
     public ResponseEntity<Result<Object>> handlerNotValidException(MethodArgumentNotValidException e) {
         Result<Object> resp = new Result<>();
         resp.setCode(ResultEnum.FAIL.getCode());
@@ -95,11 +83,22 @@ public class CommonExceptionHandler {
      * @return
      */
     @ExceptionHandler(Exception.class)
+    @ResponseBody
     public ResponseEntity<Result<Object>> handleErrorException(Exception e) {
         Result<Object> resp = new Result<>();
         resp.setCode(ResultEnum.FAIL.getCode());
         resp.setMessage(ResultEnum.FAIL.getMsg());
         log.error("\n【Luwu-ExceptionHandler】exception,e={}", e.getMessage(), e);
         return new ResponseEntity<>(resp, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * 处理 404
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ModelAndView handlerNoFoundException(Exception e) {
+        return new ModelAndView("/common/404");
     }
 }
