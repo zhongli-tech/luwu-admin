@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 全局返回结果信息
  * @author lk
- * @create 2020/12/10 18:03
+ * @create 2020/12/10 18:03 下午
  **/
 @Getter
 @AllArgsConstructor

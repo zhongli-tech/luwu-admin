@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * mybatis 分页插件
  * @author lk
- * @create 2020/3/17 14:47
+ * @create 2020/3/17 14:47 下午
  **/
 @Configuration
 public class PageHelperConfig {
