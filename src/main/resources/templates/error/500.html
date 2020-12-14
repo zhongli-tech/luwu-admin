@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>500 服务器异常</title>
+	<div th:replace="common/index :: common_header"></div>
+</head>
+<body>
+
+<div id="page-content" class="page-content">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+
+			<div class="error-container">
+				<div class="well">
+					<h1 class="grey lighter smaller">
+						<span class="blue bigger-125"><i class="ace-icon fa fa-random"></i>&nbsp;500</span>
+						&nbsp;服务器异常
+					</h1>
+
+					<hr />
+					<h3 class="lighter smaller">
+						很抱歉，服务器出现了未知异常&nbsp;
+						<i class="ace-icon fa fa-wrench icon-animated-wrench bigger-125"></i>
+						&nbsp;Sorry~
+					</h3>
+
+					<div class="space"></div>
+
+					<div>
+						<h4 class="lighter smaller">也许, 可以尝试以下操作:</h4>
+
+						<ul class="list-unstyled spaced inline bigger-110 margin-15">
+							<li>
+								<i class="ace-icon fa fa-hand-o-right blue"></i>
+								喝杯咖啡之后，再来访问
+							</li>
+
+							<li>
+								<i class="ace-icon fa fa-hand-o-right blue"></i>
+								联系管理员，报告该异常
+							</li>
+						</ul>
+					</div>
+
+					<div class="space"></div>
+
+					<div class="center">
+						<button id="btnExcetion" class="btn">点击查看异常信息</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- PAGE CONTENT ENDS -->
+		</div><!-- /.col -->
+	</div><!-- /.row -->
+
+
+</div>
+
+<div th:replace="common/index :: common_footer"></div>
+<script type="text/javascript" th:inline="javascript">
+
+	$(function() {
+		$("#btnExcetion").click(function () {
+			layer.open({
+				type: 1,
+				skin: "layui-layer-rim",
+				area: ["700px", "400px"],
+				content: "<div style='padding: 10px'>" + [[${msg}]] + "</div>"
+			});
+		});
+	});
+
+</script>
+<div th:replace="common/index :: common_footer_copyright"></div>
+</body>
+</html>

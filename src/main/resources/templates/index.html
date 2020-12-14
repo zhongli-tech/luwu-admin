@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zn">
+<head>
+    <div th:replace="common/index :: common_header"></div>
+    <link rel="stylesheet" th:href="@{/static/menu/css/sidebar-menu.css}"/>
+
+</head>
+<body class="no-skin">
+<div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header pull-left">
+            <a href="index.html" class="navbar-brand">
+                <small>webcom通用模板</small>
+            </a>
+        </div>
+
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <span class="user-info"><small>欢迎</small><span sec:authentication="name"></span></span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="ace-icon fa fa-user"></i>
+                                个人信息
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="/logout">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                注销
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /.navbar-container -->
+</div>
+
+<div class="main-container ace-save-state" id="main-container">
+
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    <div id="sidebar" class="sidebar responsive ace-save-state">
+
+        <ul id="menu" class="nav nav-list">
+            <!-- 最多支持四级菜单 -->
+            <div class="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                   data-icon2="icon-double-angle-right"></i>
+            </div>
+        </ul>
+
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="main-content-inner">
+
+            <div class="main-content-inner">
+
+                <ul class="nav-tab">
+                    <li class="left-backward">
+                        <i class="glyphicon glyphicon-backward"></i>
+                    </li>
+                    <li class="right-forward">
+                        <i class="glyphicon glyphicon-forward"></i>
+                    </li>
+                    <li class="middle-tab">
+                        <ul class="nav nav-tabs" role="tablist"></ul>
+                    </li>
+                </ul>
+
+                <div class="tab-content"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- /.main-container -->
+
+<div th:replace="common/index :: common_footer"></div>
+<script th:src="@{/static/menu/js/sidebar-menu.js}"></script>
+<script th:src="@{/static/crypto/jQuery.md5.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+
+    $(function () {
+
+        //初始化菜单栏
+        var menu = $("#menu").sidebarMenu({menus : [[${resourceDTOList}]]});
+        //点击首页
+        menu.addTabs(1, "首页", "/", false);
+
+    });
+
+
+
+</script>
+</body>
+</html>
