@@ -6,4 +6,8 @@ package net.zhongli.tech.luwu.admin.common.base;
  * @create 2020/12/10 2:12 下午
  **/
 public class BaseController {
+
+    public String toPage(String indexPrefix, String uri) {
+        return indexPrefix + uri;
+    }
 }
