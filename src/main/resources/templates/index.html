@@ -2,125 +2,211 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zn">
 <head>
-    <div th:replace="common/index :: common_header"></div>
-    <link rel="stylesheet" th:href="@{/static/menu/css/sidebar-menu.css}"/>
-
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <!-- CSS files -->
+    <link th:href="@{/static/tabler/css/tabler.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-flags.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-payments.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-vendors.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/demo.min.css}" rel="stylesheet"/>
 </head>
-<body class="no-skin">
-<div id="navbar" class="navbar navbar-default ace-save-state">
-    <div class="navbar-container ace-save-state" id="navbar-container">
-        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-            <span class="sr-only">Toggle sidebar</span>
-
-            <span class="icon-bar"></span>
-
-            <span class="icon-bar"></span>
-
-            <span class="icon-bar"></span>
-        </button>
-
-        <div class="navbar-header pull-left">
-            <a href="index.html" class="navbar-brand">
-                <small>webcom通用模板</small>
-            </a>
-        </div>
-
-        <div class="navbar-buttons navbar-header pull-right" role="navigation">
-            <ul class="nav ace-nav">
-
-                <li class="light-blue dropdown-modal">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <span class="user-info"><small>欢迎</small><span sec:authentication="name"></span></span>
-                        <i class="ace-icon fa fa-caret-down"></i>
+<body class="antialiased">
+<div class="page">
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand navbar-brand-autodark">
+                <a href=".">
+                    <img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                </a>
+            </h1>
+            <div class="navbar-nav flex-row d-lg-none">
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                        <span class="badge bg-red"></span>
                     </a>
-
-                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
-                        <li>
-                            <a href="javascript:void(0);">
-                                <i class="ace-icon fa fa-user"></i>
-                                个人信息
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="/logout">
-                                <i class="ace-icon fa fa-power-off"></i>
-                                注销
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-    </div><!-- /.navbar-container -->
-</div>
-
-<div class="main-container ace-save-state" id="main-container">
-
-    <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
-    </script>
-
-    <div id="sidebar" class="sidebar responsive ace-save-state">
-
-        <ul id="menu" class="nav nav-list">
-            <!-- 最多支持四级菜单 -->
-            <div class="sidebar-collapse">
-                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
-                   data-icon2="icon-double-angle-right"></i>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                        <div class="card">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad amet consectetur exercitationem fugiat in ipsa ipsum, natus odio quidem quod repudiandae sapiente. Amet debitis et magni maxime necessitatibus ullam.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                        <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/003f.jpg)"></span>
+                        <div class="d-none d-xl-block ps-2">
+                            <div>Paweł Kuna</div>
+                            <div class="mt-1 small text-muted">UI Designer</div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="#" class="dropdown-item">Set status</a>
+                        <a href="#" class="dropdown-item">Profile & account</a>
+                        <a href="#" class="dropdown-item">Feedback</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
             </div>
-        </ul>
-
-        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
-               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="main-content-inner">
-
-            <div class="main-content-inner">
-
-                <ul class="nav-tab">
-                    <li class="left-backward">
-                        <i class="glyphicon glyphicon-backward"></i>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav pt-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                  </span>
+                            <span class="nav-link-title">
+                    Home
+                  </span>
+                        </a>
                     </li>
-                    <li class="right-forward">
-                        <i class="glyphicon glyphicon-forward"></i>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./form-elements.html" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 11 12 14 20 6" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                            <span class="nav-link-title">
+                    Forms
+                  </span>
+                        </a>
                     </li>
-                    <li class="middle-tab">
-                        <ul class="nav nav-tabs" role="tablist"></ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" role="button" aria-expanded="false" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
+                  </span>
+                            <span class="nav-link-title">
+                    Extra
+                  </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="./activity.html" >
+                                Activity
+                            </a>
+                            <a class="dropdown-item" href="./gallery.html" >
+                                Gallery
+                            </a>
+                            <a class="dropdown-item" href="./invoice.html" >
+                                Invoice
+                            </a>
+                            <a class="dropdown-item" href="./search-results.html" >
+                                Search results
+                            </a>
+                            <a class="dropdown-item" href="./pricing.html" >
+                                Pricing cards
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./docs/index.html" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><line x1="9" y1="9" x2="10" y2="9" /><line x1="9" y1="13" x2="15" y2="13" /><line x1="9" y1="17" x2="15" y2="17" /></svg>
+                  </span>
+                            <span class="nav-link-title">
+                    Documentation
+                  </span>
+                        </a>
                     </li>
                 </ul>
-
-                <div class="tab-content"></div>
-
             </div>
-
         </div>
+    </aside>
+    <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-nav flex-row order-md-last">
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                        <span class="badge bg-red"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                        <div class="card">
+                            <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad amet consectetur exercitationem fugiat in ipsa ipsum, natus odio quidem quod repudiandae sapiente. Amet debitis et magni maxime necessitatibus ullam.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                        <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/003f.jpg)"></span>
+                        <div class="d-none d-xl-block ps-2">
+                            <div>Paweł Kuna</div>
+                            <div class="mt-1 small text-muted">UI Designer</div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="#" class="dropdown-item">Set status</a>
+                        <a href="#" class="dropdown-item">Profile & account</a>
+                        <a href="#" class="dropdown-item">Feedback</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <div>
+                    <form action="." method="get">
+                        <div class="input-icon">
+                  <span class="input-icon-addon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                  </span>
+                            <input type="text" class="form-control" placeholder="Search…" aria-label="Search in website">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="container-xl">
+            <div class="row row-deck row-cards"></div>
+        </div>
+        <footer class="footer footer-transparent d-print-none">
+            <div class="container">
+                <div class="row text-center align-items-center flex-row-reverse">
+                    <div class="col-lg-auto ms-lg-auto">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item"><a href="./docs/index.html" class="link-secondary">Documentation</a></li>
+                            <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
+                            <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item">
+                                Copyright © 2020
+                                <a href="." class="link-secondary">Tabler</a>.
+                                All rights reserved.
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="./changelog.html" class="link-secondary" rel="noopener">v1.0.0-alpha.17</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
+</div>
 
-</div><!-- /.main-container -->
-
-<div th:replace="common/index :: common_footer"></div>
-<script th:src="@{/static/menu/js/sidebar-menu.js}"></script>
-<script th:src="@{/static/crypto/jQuery.md5.js}"></script>
+<script th:src="@{/static/tabler/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/static/tabler/libs/jquery/dist/jquery.slim.min.js}"></script>
+<script th:src="@{/static/tabler/js/tabler.min.js}"></script>
 <script type="text/javascript" th:inline="javascript">
 
     $(function () {
 
-        //初始化菜单栏
-        var menu = $("#menu").sidebarMenu({menus : [[${resourceDTOList}]]});
-        //点击首页
-        menu.addTabs(1, "首页", "/", false);
-
     });
-
 
 
 </script>

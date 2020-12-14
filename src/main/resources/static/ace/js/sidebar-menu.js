@@ -11,18 +11,6 @@
 
         init(target, options);
 
-        /*if (options) {
-         init(target, options);
-        }
-        else {
-            if (!options.sourceUrl) return;
-            $.getJSON(options.sourceUrl, options.param, function (data) {
-                init(target, data);
-            });
-        }*/
-        //menu = target.find("[href='" + url + "']");
-        //menu.parent().addClass('active');
-        //menu.parent().parentsUntil('.nav-list', 'li').addClass('active').addClass('open');
         function init(target, data) {
             $.each(data, function (i, item) {
                 var li = $('<li id="li_' + item.id + '"></li>');
@@ -50,13 +38,6 @@
                 } else {
                     var href = 'javascript:addTabs({id:\'' + item.id + '\', title: \'' + item.name + '\', close: true, url: \'' + item.url + '\'});';
                     a.attr('href', href);
-                    //if (item.istab)
-                    // a.attr('href', href);
-                    //else {
-                    // a.attr('href', item.url);
-                    // a.attr('title', item.text);
-                    // a.attr('target', '_blank')
-                    //}
                     li.append(a);
                 }
                 target.append(li);
