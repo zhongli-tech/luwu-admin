@@ -18,7 +18,7 @@
            FILEDEBUG对应debug级别，文件名以log-debug-xxx.log形式命名
            stdout将日志信息输出到控制上，为方便开发测试使用
     -->
-    <contextName>market</contextName>
+    <contextName>luwu-admin</contextName>
     <property name="LOG_PATH" value="/Users/lk/project/luwu_logs/admin" />
 
     <!-- 日志记录器，日期滚动记录 -->

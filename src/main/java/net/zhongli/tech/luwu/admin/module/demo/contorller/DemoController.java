@@ -10,6 +10,7 @@ import net.zhongli.tech.luwu.admin.common.utils.Result;
 import net.zhongli.tech.luwu.admin.common.utils.ResultUtil;
 import net.zhongli.tech.luwu.admin.module.demo.entity.DemoEntity;
 import net.zhongli.tech.luwu.admin.module.demo.service.DemoService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,9 @@ public class DemoController extends BaseController {
 
     @Resource
     private DemoService demoService;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     //private final String indexPrefix = "/demo";
 
@@ -61,6 +65,10 @@ public class DemoController extends BaseController {
         DemoEntity demoEntity = new DemoEntity();
         demoEntity.setDemoName("测试 demo");
         this.demoService.save(demoEntity);
+        /*demoEntity.setId(1L);
+        this.redisTemplate.opsForValue().set("testDemo", demoEntity);
+        DemoEntity fromRedis = (DemoEntity) this.redisTemplate.opsForValue().get("testDemo");*/
+
         return ResultUtil.success(demoEntity);
     }
 
