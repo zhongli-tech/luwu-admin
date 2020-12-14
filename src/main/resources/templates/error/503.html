@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>503 无权限访问</title>
+	<div th:replace="common/index :: common_header"></div>
+</head>
+<body>
+
+<div id="page-content" class="page-content">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+
+			<div class="error-container">
+				<div class="well">
+					<h1 class="grey lighter smaller">
+						<span class="blue bigger-125"><i class="ace-icon fa fa-users"></i>503</span>
+						无权限访问
+					</h1>
+
+					<hr />
+
+					<h3 class="lighter smaller">很抱歉，您无权限访问该页面!</h3>
+
+					<div class="space"></div>
+
+					<div>
+
+						<h4 class="smaller">也许, 可以尝试以下操作:</h4>
+
+						<ul class="list-unstyled spaced inline bigger-110 margin-15">
+							<li>
+								<i class="ace-icon fa fa-hand-o-right blue"></i>
+								喝杯咖啡之后，再来访问
+							</li>
+
+							<li>
+								<i class="ace-icon fa fa-hand-o-right blue"></i>
+								联系管理员，给您分配该权限
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- PAGE CONTENT ENDS -->
+		</div><!-- /.col -->
+	</div><!-- /.row -->
+
+</div>
+
+<div th:replace="common/index :: common_footer"></div>
+<script type="text/javascript" th:inline="javascript">
+
+</script>
+<div th:replace="common/index :: common_footer_copyright"></div>
+</body>
+</html>

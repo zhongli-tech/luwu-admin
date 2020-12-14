@@ -99,6 +99,6 @@ public class CommonExceptionHandler {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView handlerNoFoundException(Exception e) {
-        return new ModelAndView("/common/404");
+        return new ModelAndView("error/404");
     }
 }
