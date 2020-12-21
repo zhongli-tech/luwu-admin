@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.PermissionMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <resultMap type="net.zhongli.tech.luwu.admin.module.system.entity.PermissionEntity" id="permissionMap">
+        <id property="id" column="id" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="createBy" column="create_by" />
+        <result property="permissionKey" column="permission_key"/>
+        <result property="permissionName" column="permission_name"/>
+        <result property="permissionType" column="permission_type"/>
+        <result property="requestType" column="request_type"/>
+        <result property="path" column="path"/>
+        <result property="icon" column="icon"/>
+        <result property="sort" column="sort"/>
+        <result property="hidden" column="hidden"/>
+        <result property="alwaysShow" column="always_show"/>
+        <result property="externalLinks" column="external_links"/>
+        <association property="parent" column="parent_id" javaType="net.zhongli.tech.luwu.admin.module.system.entity.PermissionEntity" >
+            <id property="id" column="parent_id" />
+        </association>
+    </resultMap>
+
+    <select id="queryList" parameterType="map" resultMap="permissionMap">
+        SELECT
+        p.id,
+        p.create_date,
+        p.update_date,
+        p.create_by,
+        p.parent_id,
+        p.permission_key,
+        p.permission_name,
+        p.permission_type,
+        p.request_type,
+        p.path,
+        p.icon,
+        p.sort,
+        p.hidden,
+        p.always_show,
+        p.external_links
+        FROM
+        sys_permission p
+        <where>
+            <if test="id != null">
+                AND p.id = #{id}
+            </if>
+            <if test="permissionKey != null and permissionKey != ''">
+                AND permission_key LIKE CONCAT('%', #{permissionKey}, '%')
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                AND permission_name LIKE CONCAT('%', #{permissionName}, '%')
+            </if>
+            <if test="permissionType != null">
+                AND permissionType = #{permissionType}
+            </if>
+            <if test="requestType != null and requestType != ''">
+                AND request_type = #{requestType}
+            </if>
+            <if test="hidden != null">
+                AND hidden = #{hidden}
+            </if>
+            <if test="alwaysShow != null">
+                AND always_show = #{alwaysShow}
+            </if>
+            <if test="externalLinks != null">
+                AND external_links = #{externalLinks}
+            </if>
+        </where>
+    </select>
+
+    <select id="count" parameterType="map" resultType="int">
+        SELECT
+            count(DISTINCT p.id)
+        FROM
+        sys_permission p
+        <where>
+            <if test="id != null">
+                AND p.id = #{id}
+            </if>
+            <if test="permissionKey != null and permissionKey != ''">
+                AND permission_key LIKE CONCAT('%', #{permissionKey}, '%')
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                AND permission_name LIKE CONCAT('%', #{permissionName}, '%')
+            </if>
+            <if test="permissionType != null">
+                AND permissionType = #{permissionType}
+            </if>
+            <if test="requestType != null and requestType != ''">
+                AND request_type = #{requestType}
+            </if>
+            <if test="hidden != null">
+                AND hidden = #{hidden}
+            </if>
+            <if test="alwaysShow != null">
+                AND always_show = #{alwaysShow}
+            </if>
+            <if test="externalLinks != null">
+                AND external_links = #{externalLinks}
+            </if>
+        </where>
+    </select>
+
+    <select id="findBy" parameterType="map" resultMap="permissionMap">
+        SELECT
+        p.id,
+        p.create_date,
+        p.update_date,
+        p.create_by,
+        p.parent_id,
+        p.permission_key,
+        p.permission_name,
+        p.permission_type,
+        p.request_type,
+        p.path,
+        p.icon,
+        p.sort,
+        p.hidden,
+        p.always_show,
+        p.external_links
+        FROM
+        sys_permission p
+        <where>
+            <if test="id != null">
+                AND p.id = #{id}
+            </if>
+            <if test="permissionKey != null and permissionKey != ''">
+                AND permission_key = #{permissionKey}
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                AND permission_name = #{permissionName}
+            </if>
+            <if test="permissionType != null">
+                AND permissionType = #{permissionType}
+            </if>
+            <if test="requestType != null and requestType != ''">
+                AND request_type = #{requestType}
+            </if>
+            <if test="hidden != null">
+                AND hidden = #{hidden}
+            </if>
+            <if test="alwaysShow != null">
+                AND always_show = #{alwaysShow}
+            </if>
+            <if test="externalLinks != null">
+                AND external_links = #{externalLinks}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultMap="permissionMap" parameterType="Long">
+        SELECT
+        p.id,
+        p.create_date,
+        p.update_date,
+        p.create_by,
+        p.parent_id,
+        p.permission_key,
+        p.permission_name,
+        p.permission_type,
+        p.request_type,
+        p.path,
+        p.icon,
+        p.sort,
+        p.hidden,
+        p.always_show,
+        p.external_links
+        FROM
+        sys_permission p
+        WHERE p.id = #{id}
+    </select>
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.PermissionEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_permission(
+            parent_id,
+            permission_key,
+            permission_name,
+            permission_type,
+            request_type,
+            path,
+            icon,
+            sort,
+            hidden,
+            always_show,
+            external_links
+        ) VALUES
+        (
+            #{parent.id},
+            #{permissionKey},
+            #{permissionName},
+            #{permissionType},
+            #{requestType},
+            #{path},
+            #{icon},
+            #{sort},
+            #{hidden},
+            #{alwaysShow},
+            #{externalLinks}
+        )
+    </insert>
+
+    <update id="update" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity">
+        UPDATE sys_permission
+        <set>
+            <if test="permissionKey != null and permissionKey != ''">
+                permission_key = #{permissionKey},
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                permission_name = #{permissionName},
+            </if>
+            <if test="permissionType != null">
+                permissionType = #{permissionType},
+            </if>
+            <if test="requestType != null and requestType != ''">
+                request_type = #{requestType},
+            </if>
+            <if test="hidden != null">
+                hidden = #{hidden},
+            </if>
+            <if test="alwaysShow != null">
+                always_show = #{alwaysShow},
+            </if>
+            <if test="externalLinks != null">
+                external_links = #{externalLinks},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM sys_permission WHERE id = #{id}
+    </delete>
+
+</mapper>

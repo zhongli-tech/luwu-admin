@@ -13,7 +13,13 @@ import lombok.Getter;
 public enum ServiceErrorEnum {
 
     SYSTEM_DEFAULT_SUCCESS(200, "操作成功"),
-    SYSTEM_DEFAULT_FAIL(500, "操作失败");
+    SYSTEM_DEFAULT_FAIL(500, "操作失败"),
+    SYSTEM_NO_AUTHORITY(403, "无权限"),
+    SYSTEM_SESSION_KICK(203, "您已被管理员踢出，请重新登录"),
+    SYSTEM_USER_LOGIN_ERROR(10001, "账号或密码异常，请重试"),
+    SYSTEM_USER_PASSWORD(10002, "两次输入的密码不一致"),
+    SYSTEM_USER_EXIST(10003, "账号已存在")
+    ;
 
     private final Integer code;
 

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.UserMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <resultMap type="net.zhongli.tech.luwu.admin.module.system.entity.UserEntity" id="userMap">
+        <id property="id" column="id" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="createBy" column="create_by" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="avatar" column="avatar" />
+        <result property="introduction" column="introduction" />
+        <result property="phone" column="phone" />
+        <result property="email" column="email" />
+        <result property="nickname" column="nickname" />
+        <result property="accountNonLocked" column="account_non_locked" />
+        <result property="enabled" column="enabled" />
+        <association property="role" column="roleId" javaType="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity" >
+            <id property="id" column="roleId" />
+        </association>
+    </resultMap>
+
+    <select id="queryList" parameterType="map" resultMap="userMap">
+        SELECT
+            u.id,
+            u.create_date,
+            u.update_date,
+            u.create_by,
+            u.username,
+            u.password,
+            u.avatar,
+            u.introduction,
+            u.phone,
+            u.email,
+            u.nickname,
+            u.account_non_locked,
+            u.enabled,
+            ur.role_id 'roleId'
+        FROM
+            sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id
+        <where>
+            <if test="id != null">
+                AND u.id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction LIKE CONCAT('%', #{introduction}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone LIKE CONCAT('%', #{phone}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email LIKE CONCAT('%', #{email}, '%')
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname LIKE CONCAT('%', #{nickname}, '%')
+            </if>
+            <if test="account_non_locked != null">
+                AND account_non_locked = #{accountNonLocked}
+            </if>
+            <if test="enabled != null">
+                AND enabled = #{enabled}
+            </if>
+            <if test="role != null and role.id != null">
+                AND role_id = #{role.id}
+            </if>
+        </where>
+    </select>
+
+    <select id="count" parameterType="map" resultType="int">
+        SELECT
+            count(DISTINCT u.id)
+        FROM
+            sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id
+        <where>
+            <if test="id != null">
+                AND u.id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction LIKE CONCAT('%', #{introduction}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone LIKE CONCAT('%', #{phone}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email LIKE CONCAT('%', #{email}, '%')
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname LIKE CONCAT('%', #{nickname}, '%')
+            </if>
+            <if test="account_non_locked != null">
+                AND account_non_locked = #{accountNonLocked}
+            </if>
+            <if test="enabled != null">
+                AND enabled = #{enabled}
+            </if>
+            <if test="role != null and role.id != null">
+                AND role_id = #{role.id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findBy" parameterType="map" resultMap="userMap">
+        SELECT
+        u.id,
+        u.create_date,
+        u.update_date,
+        u.create_by,
+        u.username,
+        u.password,
+        u.avatar,
+        u.introduction,
+        u.phone,
+        u.email,
+        u.nickname,
+        u.account_non_locked,
+        u.enabled,
+        ur.role_id 'roleId'
+        FROM
+        sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id
+        <where>
+            <if test="id != null">
+                AND u.id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                AND username = #{username}
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction = #{introduction}
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone = #{phone}
+            </if>
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname = #{nickname}
+            </if>
+            <if test="account_non_locked != null">
+                AND account_non_locked = #{accountNonLocked}
+            </if>
+            <if test="enabled != null">
+                AND enabled = #{enabled}
+            </if>
+            <if test="role != null and role.id != null">
+                AND role_id = #{role.id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultMap="userMap" parameterType="Long">
+        SELECT
+        u.id,
+        u.create_date,
+        u.update_date,
+        u.create_by,
+        u.username,
+        u.password,
+        u.avatar,
+        u.introduction,
+        u.phone,
+        u.email,
+        u.nickname,
+        u.account_non_locked,
+        u.enabled,
+        ur.role_id 'roleId'
+        FROM
+        sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id
+        WHERE u.id = #{id}
+    </select>
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_user(
+            username,
+            password,
+            avatar,
+            introduction,
+            phone,
+            email,
+            nickname,
+            account_non_locked,
+            enabled
+        ) VALUES
+        (
+            #{username},
+            #{password},
+            #{avatar},
+            #{introduction},
+            #{phone},
+            #{email},
+            #{nickname},
+            #{accountNonLocked},
+            #{enabled}
+        )
+    </insert>
+
+    <update id="update" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.UserEntity">
+        UPDATE sys_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="introduction != null and introduction != ''">
+                introduction = #{introduction},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="account_non_locked != null">
+                account_non_locked = #{accountNonLocked},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+
+    <insert id="saveUserRole" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.UserEntity">
+        INSERT ignore INTO sys_user_role(
+            user_id,
+            role_id
+        ) VALUES (
+            #{id},
+            #{role.id}
+        )
+    </insert>
+
+    <delete id="deleteUserRole" parameterType="Long">
+        DELETE FROM sys_user_role WHERE user_id = #{id}
+    </delete>
+
+    <select id="findByUsernameOrEmail" resultMap="userMap" parameterType="String">
+        SELECT
+        u.id,
+        u.create_date,
+        u.update_date,
+        u.create_by,
+        u.username,
+        u.password,
+        u.avatar,
+        u.introduction,
+        u.phone,
+        u.email,
+        u.nickname,
+        u.account_non_locked,
+        u.enabled,
+        ur.role_id 'roleId'
+        FROM
+        sys_user u
+        LEFT JOIN sys_user_role ur ON ur.user_id = u.id
+        WHERE u.username = #{username} OR u.email = #{username}
+    </select>
+</mapper>
