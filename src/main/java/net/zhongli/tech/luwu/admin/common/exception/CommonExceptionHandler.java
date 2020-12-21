@@ -1,7 +1,9 @@
 package net.zhongli.tech.luwu.admin.common.exception;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import net.zhongli.tech.luwu.admin.common.enums.ResultEnum;
+import net.zhongli.tech.luwu.admin.common.utils.HttpUtils;
 import net.zhongli.tech.luwu.admin.common.utils.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 统一异常处理
@@ -98,7 +104,18 @@ public class CommonExceptionHandler {
      * @return
      */
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ModelAndView handlerNoFoundException(Exception e) {
-        return new ModelAndView("error/404");
+    public void handlerNoFoundException(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
+        // 判断是连接请求还是异步请求
+        if (HttpUtils.isAjaxRequest(request)) {
+            // 返回 404 错误 json
+            Result<Object> resp = new Result<>();
+            resp.setCode(ResultEnum.NOT_FOUND.getCode());
+            resp.setMessage(ResultEnum.NOT_FOUND.getMsg());
+            // 返回 json 流
+            HttpUtils.writeJson(response, HttpStatus.NOT_FOUND.value(), JSONObject.toJSONString(resp));
+        } else {
+            // 跳转 404 错误页面
+            response.sendRedirect("/error/404");
+        }
     }
 }

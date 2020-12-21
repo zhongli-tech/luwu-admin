@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.LoginlogMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <resultMap type="net.zhongli.tech.luwu.admin.module.system.entity.LoginlogEntity" id="loginlogMap">
+        <id property="id" column="id" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="createBy" column="create_by" />
+        <result property="ip" column="ip"/>
+        <association property="userEntity" column="user_id" javaType="net.zhongli.tech.luwu.admin.module.system.entity.UserEntity" >
+            <id property="id" column="user_id" />
+        </association>
+    </resultMap>
+
+    <select id="queryList" parameterType="map" resultMap="loginlogMap">
+        SELECT
+            id,
+            create_date,
+            update_date,
+            create_by,
+            ip,
+            user_id
+        FROM
+            sys_login_log
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="ip != null and ip != ''">
+                AND ip = #{ip}
+            </if>
+            <if test="userEntity != null and userEntity.id != ''">
+                AND user_id = #{userEntity.id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findBy" parameterType="map" resultMap="loginlogMap">
+        SELECT
+            id,
+            create_date,
+            update_date,
+            create_by,
+            ip,
+            user_id
+        FROM
+            sys_login_log
+        <where>
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="ip != null and ip != ''">
+                AND ip = #{ip}
+            </if>
+            <if test="userEntity != null and userEntity.id != ''">
+                AND user_id = #{userEntity.id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultMap="loginlogMap" parameterType="Long">
+        SELECT
+            id,
+            create_date,
+            update_date,
+            create_by,
+            ip,
+            user_id
+        FROM
+            sys_login_log
+        WHERE id = #{id}
+    </select>
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.LoginlogEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_login_log(
+            ip,
+            user_id
+        ) VALUES
+        (
+            #{ip},
+            #{userEntity.id}
+        )
+    </insert>
+
+    <update id="update" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.LoginlogEntity">
+        UPDATE sys_login_log
+        <set>
+            <if test="ip != null and ip != ''">
+                ip = #{ip},
+            </if>
+            <if test="userEntity != null and userEntity.id != ''">
+                user_id = #{userEntity.id},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM sys_login_log WHERE id = #{id}
+    </delete>
+
+</mapper>

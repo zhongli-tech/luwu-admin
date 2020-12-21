@@ -1,6 +1,8 @@
 package net.zhongli.tech.luwu.admin.common.utils;
 
 import net.zhongli.tech.luwu.admin.module.system.entity.UserEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * 获取授权用户信息
@@ -13,9 +15,9 @@ public class UserDetailsUtil {
      * 获取用户信息
      * @return
      */
-    /*public static UserEntity getPrincipal() {
+    public static UserEntity getPrincipal() {
         UserEntity user = null;
-        SecurityContext  securityContext = SecurityContextHolder.getContext();
+        SecurityContext securityContext = SecurityContextHolder.getContext();
         boolean userExist = null != securityContext && null != securityContext.getAuthentication()
                 && null != securityContext.getAuthentication().getDetails();
         if (userExist) {
@@ -25,9 +27,7 @@ public class UserDetailsUtil {
             }
         }
         return user;
-    }*/
-
-    public static UserEntity getPrincipal() {
-        return null;
     }
+
+
 }

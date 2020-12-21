@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.RoleMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <resultMap type="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity" id="roleMap">
+        <id property="id" column="id" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="createBy" column="create_by" />
+        <result property="roleKey" column="role_key" />
+        <result property="roleName" column="role_name" />
+        <result property="introduction" column="introduction" />
+        <collection property="permissions" ofType="net.zhongli.tech.luwu.admin.module.system.entity.PermissionEntity" >
+            <id property="id" column="permissionId" />
+            <result property="permissionKey" column="permission_key"/>
+            <result property="permissionName" column="permission_name"/>
+            <result property="permissionType" column="permission_type"/>
+            <result property="requestType" column="request_type"/>
+            <result property="path" column="path"/>
+            <result property="icon" column="icon"/>
+            <result property="sort" column="sort"/>
+            <result property="hidden" column="hidden"/>
+            <result property="alwaysShow" column="always_show"/>
+            <result property="externalLinks" column="external_links"/>
+            <association property="parent" column="parent_id" javaType="net.zhongli.tech.luwu.admin.module.system.entity.PermissionEntity" >
+                <id property="id" column="parent_id" />
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="queryList" parameterType="map" resultMap="roleMap">
+        SELECT
+            r.id,
+            r.create_date,
+            r.update_date,
+            r.create_by,
+            r.role_key,
+            r.role_name,
+            r.introduction,
+            p.id 'permissionId',
+            p.parent_id,
+            p.permission_key,
+            p.permission_name,
+            p.permission_type,
+            p.request_type,
+            p.path,
+            p.icon,
+            p.sort,
+            p.hidden,
+            p.always_show,
+            p.external_links
+        FROM
+            sys_role r
+        LEFT JOIN sys_role_permission rp ON rp.role_id = r.id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <where>
+            <if test="id != null">
+                AND r.id = #{id}
+            </if>
+            <if test="roleKey != null and roleKey != ''">
+                AND role_key = #{roleKey}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                AND role_name LIKE CONCAT('%', #{roleName}, '%')
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction LIKE CONCAT('%', #{introduction}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="count" parameterType="map" resultType="int">
+        SELECT
+            count(DISTINCT r.id)
+        FROM
+        sys_role r
+        LEFT JOIN sys_role_permission rp ON rp.role_id = r.id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <where>
+            <if test="id != null">
+                AND r.id = #{id}
+            </if>
+            <if test="roleKey != null and roleKey != ''">
+                AND role_key = #{roleKey}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                AND role_name LIKE CONCAT('%', #{roleName}, '%')
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction LIKE CONCAT('%', #{introduction}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findBy" parameterType="map" resultMap="roleMap">
+        SELECT
+        r.id,
+        r.create_date,
+        r.update_date,
+        r.create_by,
+        r.role_key,
+        r.role_name,
+        r.introduction,
+        p.id 'permissionId',
+        p.parent_id,
+        p.permission_key,
+        p.permission_name,
+        p.permission_type,
+        p.request_type,
+        p.path,
+        p.icon,
+        p.sort,
+        p.hidden,
+        p.always_show,
+        p.external_links
+        FROM
+        sys_role r
+        LEFT JOIN sys_role_permission rp ON rp.role_id = r.id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        <where>
+            <if test="id != null">
+                AND r.id = #{id}
+            </if>
+            <if test="roleKey != null and roleKey != ''">
+                AND role_key = #{roleKey}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                AND role_name = #{roleName}
+            </if>
+            <if test="introduction != null and introduction != ''">
+                AND introduction = #{introduction}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultMap="roleMap" parameterType="Long">
+        SELECT
+        r.id,
+        r.create_date,
+        r.update_date,
+        r.create_by,
+        r.role_key,
+        r.role_name,
+        r.introduction,
+        p.id 'permissionId',
+        p.parent_id,
+        p.permission_key,
+        p.permission_name,
+        p.permission_type,
+        p.request_type,
+        p.path,
+        p.icon,
+        p.sort,
+        p.hidden,
+        p.always_show,
+        p.external_links
+        FROM
+        sys_role r
+        LEFT JOIN sys_role_permission rp ON rp.role_id = r.id
+        LEFT JOIN sys_permission p ON rp.permission_id = p.id
+        WHERE r.id = #{id}
+    </select>
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_role(
+            role_key,
+            role_name,
+            introduction
+        ) VALUES
+        (
+            #{roleKey},
+            #{roleName},
+            #{introduction}
+        )
+    </insert>
+
+    <update id="update" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity">
+        UPDATE sys_role
+        <set>
+            <if test="roleKey != null and roleKey != ''">
+                role_key = #{roleKey},
+            </if>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="introduction != null and introduction != ''">
+                introduction = #{introduction},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM sys_role WHERE id = #{id}
+    </delete>
+
+    <insert id="saveRolePermission" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.RoleEntity">
+        INSERT ignore INTO sys_role_permission(
+            role_id,
+            permission_id
+        ) VALUES
+        <foreach collection="permissions" item = "permission" separator=",">
+            (#{id}, #{permission.id})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserRole" parameterType="Long">
+        DELETE FROM sys_role_permission WHERE role_id = #{id}
+    </delete>
+
+</mapper>

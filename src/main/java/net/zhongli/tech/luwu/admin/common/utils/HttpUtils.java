@@ -5,6 +5,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -93,7 +96,48 @@ public class HttpUtils {
         return getIpAddress(getHttpServletRequest());
     }
 
-    
 
+    /**
+     * 写出流json
+     * @param response
+     * @param json
+     * @throws Exception
+     */
+    public static void writeJson(HttpServletResponse response, String json) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+
+        PrintWriter out = response.getWriter();
+        out.println(json);
+        out.flush();
+        out.close();
+    }
+
+
+    /**
+     * 写出流json
+     * @param response
+     * @param json
+     * @throws Exception
+     */
+    public static void writeJson(HttpServletResponse response, int sc, String json) throws IOException {
+        response.setContentType("application/json;charset=utf-8");
+        response.setStatus(sc);
+
+        PrintWriter out = response.getWriter();
+        out.println(json);
+        out.flush();
+        out.close();
+    }
+
+
+    /**
+     * 判断是否ajax请求
+     * @param httpRequest
+     * @return
+     */
+    public static boolean isAjaxRequest(HttpServletRequest httpRequest) {
+        return (httpRequest.getHeader("X-Requested-With") != null &&
+                "XMLHttpRequest".equals(httpRequest.getHeader("X-Requested-With")));
+    }
 
 }
