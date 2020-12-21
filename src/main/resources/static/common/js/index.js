@@ -1,6 +1,8 @@
-/**
- * Created by OZY on 2017/11/8.
- */
+/*
+* 公共引入js
+* @version 1.0.0
+* by OZY
+*/
 (function ($) {
 
     $.extend({

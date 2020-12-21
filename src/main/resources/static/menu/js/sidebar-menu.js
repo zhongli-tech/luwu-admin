@@ -1,6 +1,9 @@
-/**
- * Created by OZY on 2017/11/8.
- */
+/*
+* 菜单封装
+* @version 1.0.0
+* by Cerulean.
+*/
+
 (function ($) {
 
     var Menu = function (element, options) {
@@ -10,210 +13,128 @@
 
 
     Menu.prototype = {
-        //初始化菜单
+        // 初始化菜单
         init : function () {
 
             var menus = this.options.menus;
 
-            if (menus == null) {
-                console.log("ERROR: 请先设置资源属性menus...");
-                return;
+            if (menus === undefined || menus.length === 0) {
+                throw new Error("请先设置菜单menus属性");
             }
-            //创建菜单
-            this.createSidebar(this.$element, menus);
-            //绑定事件
+            // 创建菜单
+            this.createSidebar();
+            // 绑定事件
             this.bindEvents();
         },
 
-        //创建菜单
-        createSidebar : function(element, menus) {
-            //console.log(menus);
-            for (var i = 0; i < menus.length ; i++) {
+        // 创建菜单
+        createSidebar : function() {
+            var element = this.$element;
+            var menus = this.options.menus;
+            var customizeName = this.options.customizeName;
 
+            var ul_ = $('<ul class="navbar-nav pt-lg-3"></ul>');
+            for (var i = 0; i < menus.length; i++) {
+                // 资源菜单对象
                 var menu = menus[i];
-                var li_ = $('<li id="li_' + menu.id + '"></li>');
-                var icon_ = $('<i></i>').addClass("menu-icon").addClass(menu.icon);
-                var text_ = $('<span></span>').addClass('menu-text').text(menu.resourceName);
-                var a_ = $('<a></a>').append(icon_).append(text_);
 
-                if (menu.children && menu.children.length > 0) {
-                    a_.attr('href', '#');
-                    a_.addClass('dropdown-toggle');
+                var li_ = $('<li class="nav-item"></li>');
+                li_.attr("id", this.options.idPrefix + menu[customizeName.id]);
+                var div_ = $('<div class="nav-link"></div>');
+                // 图标
+                var icon_ = $('<span class="nav-link-icon d-md-none d-lg-inline-block"></span>');
+                icon_.append(menu[customizeName.icon]);
+                // 标题
+                var name = $('<span class="nav-link-title"></span>');
+                name.append(menu[customizeName.name]);
+                // 添加进div容器
+                div_.append(icon_);
+                div_.append(name);
+                li_.append(div_);
+                // 判断是否存在孩子节点
+                if (menu[customizeName.children] && menu[customizeName.children].length > 0) {
+                    li_.addClass("dropdown");
+                    div_.addClass("dropdown-toggle");
+                    div_.attr("nav-dropdown-click", true);
+                    div_.attr("aria-expanded", false);
 
-                    var arrow_ = $('<b></b>').addClass('arrow').addClass('fa fa-angle-down');
-                    a_.append(arrow_);
-                    li_.append(a_);
-
-                    var menuUl_ = $('<ul></ul>').addClass('submenu');
-                    this.createSidebar(menuUl_, menu.children);
-
-                    li_.append(menuUl_);
-
+                    var childrenDiv_ = this.createSidebarChildren(menu[customizeName.children], customizeName);
+                    li_.append(childrenDiv_);
                 } else {
-                    a_.attr("href", "javascript:;");
-                    a_.attr("id", menu.id);
-                    a_.attr("name", menu.resourceName);
-                    a_.attr("url", menu.url);
-                    a_.attr("close", true);
-                    a_.attr("addtabs", "");
-                    li_.append(a_);
-
+                    // 不存在孩子节点，则添加点击绑定属性
+                    li_.attr("nav-click", true);
                 }
-
-                element.append(li_);
+                // 赋值对象信息
+                li_.data(menu);
+                ul_.append(li_);
             }
-
+            element.append(ul_);
         },
+        // 创建孩子菜单(二级)
+        createSidebarChildren(menus) {
+            var customizeName = this.options.customizeName;
 
-        //绑定各种事件
+            var div_ = $('<div class="dropdown-menu"></div>');
+            for (var i = 0; i < menus.length; i++) {
+                var menu = menus[i];
+                var div_item_ = $('<div class="dropdown-item"></div>');
+                div_item_.attr("id", this.options.idPrefix + menu[customizeName.id]);
+                div_item_.append(menu[customizeName.name]);
+                div_item_.attr("nav-click", true);
+                // 赋值对象信息
+                div_item_.data(menu);
+                div_.append(div_item_);
+            }
+            return div_;
+        },
+        // 绑定各种事件
         bindEvents : function() {
-            var obj = this;
-            //点击添加
-            $("[addtabs]").click(function () {
-                obj.addTabs(
-                    $(this).attr("id"), $(this).attr('name'),
-                    $(this).attr('url'), $(this).attr('close')
-                );
-            });
-
-            //绑定关闭事件
-            $(".nav-tabs").on("click", "[tabclose]", function (e) {
-                var id = $(this).attr("tabclose");
-                obj.closeTab(id);
-            });
-
-            //绑定自适应
-            window.onresize = function () {
-                var target = $(".tab-content .active iframe");
-                obj.changeFrameHeight(target);
-            };
-
-            //tab页 左向右移动事件
-            $('.nav-tab .left-backward').click(obj.leftMove);
-
-            $('.nav-tab .right-forward').click(obj.rightMove);
-        },
-
-        //添加tabs
-        addTabs : function(id, name, url, close) {
-            var tabId = "tab_" + id;
-            $(".active").removeClass("active");
-
-            //如果TAB不存在，创建一个新的TAB
-            if (!$("#" + tabId)[0]) {
-                //固定TAB中IFRAME高度
-                var mainHeight = document.documentElement.clientHeight - 115;
-                //创建新TAB的title
-                var title = '<li role="presentation" id="' + tabId + '" tabUrl="' + url + '"><a href="#tabpanel_' + id + '" aria-controls="tabpanel_' + id + '" role="tab" data-toggle="tab">' + name;
-                //是否允许关闭
-                if (close) {
-                    title += ' <i class="glyphicon glyphicon-remove-sign" tabclose="' + id + '"></i>';
-                }
-                title += '</a></li>';
-
-
-                //是否指定TAB内容
-                var content = '<div role="tab" class="tab-pane" style="height: ' + mainHeight + 'px;" id="tabpanel_' + id + '"><iframe id="iframe_' + tabId +'" src="' + url +
-                    '" width="100%" height="' + mainHeight + 'px" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="auto" allowtransparency="true"></iframe></div>';
-
-                //加入TABS
-                $(".nav-tabs").append(title);
-                $(".tab-content").append(content);
-
-                //右移
-                this.rightMove();
-            }
-
-            //激活TAB
-            $("#" + tabId).addClass('active');
-            $("#tabpanel_" + id).addClass('active');
-
-            //激活左边菜单
-            $("#menu li").removeClass('active');
-            $('#li_' + id).addClass('active');
-            $('#li_' + id).parent().parent().addClass('active');
-        },
-
-        //关闭tab
-        closeTab : function(id) {
-            //如果关闭的是当前激活的TAB，激活他的前一个TAB
-            if ($(".nav-tabs .active").attr('id') == "tab_" + id) {
-                $("#tab_" + id).prev().addClass('active');
-                $("#tabpanel_" + id).prev().addClass('active');
-            }
-
-            //关闭TAB
-            $("#tabpanel_" + id).remove();
-            $("#tab_" + id).remove();
-        },
-
-        //左移动
-        leftMove : function() {
-
-            if($(".nav-tab .middle-tab .nav-tabs").is(":animated")){
-                return;
-            }
-
-            var iLeft = $('.nav-tab .middle-tab .nav-tabs').position().left;
-            if(iLeft < 0) {
-                var totalWidth = 0;
-                var lis = $(".nav-tabs li");
-                for(var i = 0; i < lis.length; i++){
-                    var item = lis[i];
-                    totalWidth-= $(item).width();
-                    if(iLeft > totalWidth){
-                        iLeft+= $(item).width();
-                        break;
-                    }
-                }
-                if(iLeft > 0){
-                    iLeft = 0;
-                }
-                $(".nav-tab .middle-tab .nav-tabs").animate({left : iLeft + 'px'});
-            }
-        },
-
-        //右移动
-        rightMove : function() {
-
-            if($(".nav-tab .middle-tab .nav-tabs").is(":animated")){
-                return;
-            }
-
-            var iLeft = $(".nav-tab .middle-tab .nav-tabs").position().left;
-            var totalWidth = 0;
-            $.each($(".nav-tabs li"), function(key, item){
-                totalWidth+= $(item).width();
-            });
-
-            var tabsWidth = $(".nav-tab .middle-tab").width();
-
-            if(totalWidth > tabsWidth) {
-                if(totalWidth - tabsWidth <= Math.abs(iLeft)){
+            var customizeName = this.options.customizeName;
+            var idPrefix = this.options.idPrefix;
+            var breadcrumbId = this.options.breadcrumbId;
+            // 绑定无子菜单的点击事件
+            $("[nav-click=true]").click(function () {
+                var id = $(this).attr("id");
+                var click_e_ =  $("#" + id);
+                // 点击已点击菜单则不执行任何操作
+                if (click_e_.hasClass("active")) {
                     return;
                 }
-                var lis = $(".nav-tabs li");
-                totalWidth = 0;
-                for(var i = lis.length - 1; i >= 0; i--){
-                    var item = lis[i];
-                    totalWidth-= $(item).width();
-                    if(iLeft > totalWidth){
-                        iLeft-= $(item).width();
-                        break;
-                    }
+                // 移除激活状态
+                $("[id*=" + idPrefix + "]").removeClass("active");
+
+                // 激活点击菜单
+                click_e_.addClass('active');
+                click_e_.parent().prev().attr("aria-expanded", true);
+                click_e_.parent().parent().addClass('active');
+
+                // 面包屑设置
+                var ol_ = $('<ol class="breadcrumb"></ol>');
+                ol_.attr("aria-label", "breadcrumbs");
+                if (click_e_.hasClass("dropdown-item")) {
+                    // 点击是二级
+                    ol_.append('<li class="breadcrumb-item">' + click_e_.parent().parent().data(customizeName.name) + '</li>');
                 }
+                ol_.append('<li class="breadcrumb-item active" aria-current="page">' + click_e_.data(customizeName.name) + '</li>');
 
-                $(".nav-tab .middle-tab .nav-tabs").animate({left : iLeft + 'px'});
-            }
+                var breadcrumb_ = $("#" + breadcrumbId);
+                breadcrumb_.animate({left: '50px', opacity: 'toggle'}, "fast", function () {
+                    breadcrumb_.empty();
+                    breadcrumb_.append(ol_);
+                    breadcrumb_.animate({left: '0', opacity: 'toggle'}, "fast");
+                });
+            });
+
+            // 绑定存在子菜单的点击事件
+            $("[nav-dropdown-click=true]").click(function () {
+                $(this).next().slideToggle(200);
+            })
         },
+        // 菜单点击事件
+        pageLoad: function() {
 
-        //自适应iframe
-        changeFrameHeight : function(iframe) {
-            $(iframe).height(document.documentElement.clientHeight - 115);
-            $(iframe).parent(".tab-pane").height(document.documentElement.clientHeight - 130);
         },
-
-        //获取menu实例
+        // 获取menu实例
         getMenu : function() {
             return $(this.$element).data("menu");
         },
@@ -245,8 +166,22 @@
     };
 
 
+    // 默认属性
     $.fn.sidebarMenu.defaults = {
-        menus : null //菜单资源
+        // 菜单列表
+        menus : undefined,
+        // 自定义属性别名
+        customizeName: {
+            id: "id",
+            name: "name",
+            url: "url",
+            icon: "icon",
+            children: "children"
+        },
+        // id扩展前缀
+        idPrefix: "nav_",
+        // 面包屑id
+        breadcrumbId: "breadcrumb-menu"
     };
 
 })(jQuery);

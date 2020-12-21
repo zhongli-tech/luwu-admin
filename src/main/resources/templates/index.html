@@ -5,13 +5,17 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>Luwu-admin是一款企业级后台管理系统</title>
+    <!-- 图标 -->
+    <link rel="icon" th:href="@{/static/common/img/logo/favicon.ico}" type="image/x-ico"/>
+    <!--<link rel="icon" href="/static/common/img/logo/favicon.ico" type="image/x-ico"/>-->
     <!-- CSS files -->
     <link th:href="@{/static/tabler/css/tabler.min.css}" rel="stylesheet"/>
     <link th:href="@{/static/tabler/css/tabler-flags.min.css}" rel="stylesheet"/>
     <link th:href="@{/static/tabler/css/tabler-payments.min.css}" rel="stylesheet"/>
     <link th:href="@{/static/tabler/css/tabler-vendors.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/tabler/css/demo.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/demo.css}" rel="stylesheet"/>
+    <link th:href="@{/static/common/css/index.css}" rel="stylesheet"/>
 </head>
 <body class="antialiased">
 <div class="page">
@@ -22,7 +26,9 @@
             </button>
             <h1 class="navbar-brand navbar-brand-autodark">
                 <a href=".">
-                    <img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                    <!--<img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">-->
+                    <img th:src="@{/static/common/img/logo/logo-white.png}" width="32" height="32" class="navbar-brand-image"/>
+                    <span class="navbar-brand-title ps-1">Luwu-Admin</span>
                 </a>
             </h1>
             <div class="navbar-nav flex-row d-lg-none">
@@ -34,86 +40,24 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
                         <div class="card">
                             <div class="card-body">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad amet consectetur exercitationem fugiat in ipsa ipsum, natus odio quidem quod repudiandae sapiente. Amet debitis et magni maxime necessitatibus ullam.
+                                提示提示提示提示提示
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                        <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/003f.jpg)"></span>
-                        <div class="d-none d-xl-block ps-2">
-                            <div>Paweł Kuna</div>
-                            <div class="mt-1 small text-muted">UI Designer</div>
-                        </div>
+                        <span class="avatar avatar-sm" style="background-image: url(https://picsum.photos/id/1005/200)"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a href="#" class="dropdown-item">Set status</a>
-                        <a href="#" class="dropdown-item">Profile & account</a>
-                        <a href="#" class="dropdown-item">Feedback</a>
+                        <a href="#" class="dropdown-item">个人信息</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a href="#" class="dropdown-item">设置</a>
+                        <a href="#" class="dropdown-item">登出</a>
                     </div>
                 </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="navbar-nav pt-lg-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" >
-                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
-                  </span>
-                            <span class="nav-link-title">
-                    Home
-                  </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./form-elements.html" >
-                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 11 12 14 20 6" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
-                  </span>
-                            <span class="nav-link-title">
-                    Forms
-                  </span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" role="button" aria-expanded="false" >
-                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
-                  </span>
-                            <span class="nav-link-title">
-                    Extra
-                  </span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./activity.html" >
-                                Activity
-                            </a>
-                            <a class="dropdown-item" href="./gallery.html" >
-                                Gallery
-                            </a>
-                            <a class="dropdown-item" href="./invoice.html" >
-                                Invoice
-                            </a>
-                            <a class="dropdown-item" href="./search-results.html" >
-                                Search results
-                            </a>
-                            <a class="dropdown-item" href="./pricing.html" >
-                                Pricing cards
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./docs/index.html" >
-                  <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><line x1="9" y1="9" x2="10" y2="9" /><line x1="9" y1="13" x2="15" y2="13" /><line x1="9" y1="17" x2="15" y2="17" /></svg>
-                  </span>
-                            <span class="nav-link-title">
-                    Documentation
-                  </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <div id="navbar-menu" class="collapse navbar-collapse"></div>
         </div>
     </aside>
     <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
@@ -130,40 +74,32 @@
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
                         <div class="card">
                             <div class="card-body">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad amet consectetur exercitationem fugiat in ipsa ipsum, natus odio quidem quod repudiandae sapiente. Amet debitis et magni maxime necessitatibus ullam.
+                                提示提示提示提示
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                        <span class="avatar avatar-sm" style="background-image: url(https://preview.tabler.io/static/avatars/003f.jpg)"></span>
-                        <div class="d-none d-xl-block ps-2">
-                            <div>Paweł Kuna</div>
-                            <div class="mt-1 small text-muted">UI Designer</div>
+                        <span class="avatar avatar-sm" style="background-image: url(https://picsum.photos/id/1005/200)"></span>
+                        <div class="d-xl-block ps-2">
+                            <div>Admin</div>
+                            <div class="mt-1 small text-muted">超级管理员</div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a href="#" class="dropdown-item">Set status</a>
-                        <a href="#" class="dropdown-item">Profile & account</a>
-                        <a href="#" class="dropdown-item">Feedback</a>
+                        <a href="#" class="dropdown-item">个人信息</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a href="#" class="dropdown-item">设置</a>
+                        <a href="#" class="dropdown-item">登出</a>
                     </div>
                 </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <div>
-                    <form action="." method="get">
-                        <div class="input-icon">
-                  <span class="input-icon-addon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
-                  </span>
-                            <input type="text" class="form-control" placeholder="Search…" aria-label="Search in website">
-                        </div>
-                    </form>
-                </div>
+            <div id="breadcrumb-menu" class="collapse navbar-collapse" style="position: relative">
+                <!--<ol class="breadcrumb" aria-label="breadcrumbs">
+                    <li class="breadcrumb-item">系统管理</li>
+                    <li class="breadcrumb-item active" aria-current="page">用户管理</li>
+                </ol>-->
             </div>
         </div>
     </header>
@@ -174,22 +110,10 @@
         <footer class="footer footer-transparent d-print-none">
             <div class="container">
                 <div class="row text-center align-items-center flex-row-reverse">
-                    <div class="col-lg-auto ms-lg-auto">
-                        <ul class="list-inline list-inline-dots mb-0">
-                            <li class="list-inline-item"><a href="./docs/index.html" class="link-secondary">Documentation</a></li>
-                            <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
-                            <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
-                        </ul>
-                    </div>
                     <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                         <ul class="list-inline list-inline-dots mb-0">
                             <li class="list-inline-item">
-                                Copyright © 2020
-                                <a href="." class="link-secondary">Tabler</a>.
-                                All rights reserved.
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="./changelog.html" class="link-secondary" rel="noopener">v1.0.0-alpha.17</a>
+                                Copyright © 2021 东莞重力科技有限公司.版权所有
                             </li>
                         </ul>
                     </div>
@@ -198,14 +122,56 @@
         </footer>
     </div>
 </div>
-
+<script th:src="@{/static/jquery/jquery.min.js}"></script>
+<script th:src="@{/static/menu/js/sidebar-menu.js}"></script>
 <script th:src="@{/static/tabler/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/static/tabler/libs/jquery/dist/jquery.slim.min.js}"></script>
 <script th:src="@{/static/tabler/js/tabler.min.js}"></script>
+<!--<script th:src="@{/static/common/js/index.js}"></script>-->
 <script type="text/javascript" th:inline="javascript">
 
     $(function () {
+        var menus = [{
+            id: 0,
+            name: "首页",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6\" /><path d=\"M9 17v1a3 3 0 0 0 6 0v-1\" /></svg>"
+        }, {
+            id: 1,
+            name: "系统管理",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><polyline points=\"9 11 12 14 20 6\" /><path d=\"M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9\" /></svg>",
+            children: [{
+                id: 2,
+                name: "用户管理",
+                url: "",
+            }, {
+                id: 3,
+                name: "角色管理",
+                url: "",
+            }]
+        }, {
+            id: 4,
+            name: "监控管理",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><polyline points=\"9 11 12 14 20 6\" /><path d=\"M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9\" /></svg>",
+            children: [{
+                id: 5,
+                name: "登录管理",
+                url: "",
+            }, {
+                id: 6,
+                name: "日志管理",
+                url: "",
+            }]
+        }]
+        //初始化菜单栏
+        $("#navbar-menu").sidebarMenu({
+            menus: menus,
+            breadcrumbId: "breadcrumb-menu"
+        });
+        //点击首页
 
+        // menu.addTabs(1, "首页", "/welcome", false);
     });
 
 
