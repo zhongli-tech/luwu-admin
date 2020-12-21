@@ -2,125 +2,177 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zn">
 <head>
-    <div th:replace="common/index :: common_header"></div>
-    <link rel="stylesheet" th:href="@{/static/menu/css/sidebar-menu.css}"/>
-
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Luwu-admin是一款企业级后台管理系统</title>
+    <!-- 图标 -->
+    <link rel="icon" th:href="@{/static/common/img/logo/favicon.ico}" type="image/x-ico"/>
+    <!--<link rel="icon" href="/static/common/img/logo/favicon.ico" type="image/x-ico"/>-->
+    <!-- CSS files -->
+    <link th:href="@{/static/tabler/css/tabler.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-flags.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-payments.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/tabler-vendors.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/tabler/css/demo.css}" rel="stylesheet"/>
+    <link th:href="@{/static/common/css/index.css}" rel="stylesheet"/>
 </head>
-<body class="no-skin">
-<div id="navbar" class="navbar navbar-default ace-save-state">
-    <div class="navbar-container ace-save-state" id="navbar-container">
-        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-            <span class="sr-only">Toggle sidebar</span>
-
-            <span class="icon-bar"></span>
-
-            <span class="icon-bar"></span>
-
-            <span class="icon-bar"></span>
-        </button>
-
-        <div class="navbar-header pull-left">
-            <a href="index.html" class="navbar-brand">
-                <small>webcom通用模板</small>
-            </a>
-        </div>
-
-        <div class="navbar-buttons navbar-header pull-right" role="navigation">
-            <ul class="nav ace-nav">
-
-                <li class="light-blue dropdown-modal">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <span class="user-info"><small>欢迎</small><span sec:authentication="name"></span></span>
-                        <i class="ace-icon fa fa-caret-down"></i>
+<body class="antialiased">
+<div class="page">
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand navbar-brand-autodark">
+                <a href=".">
+                    <!--<img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">-->
+                    <img th:src="@{/static/common/img/logo/logo-white.png}" width="32" height="32" class="navbar-brand-image"/>
+                    <span class="navbar-brand-title ps-1">Luwu-Admin</span>
+                </a>
+            </h1>
+            <div class="navbar-nav flex-row d-lg-none">
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                        <span class="badge bg-red"></span>
                     </a>
-
-                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
-                        <li>
-                            <a href="javascript:void(0);">
-                                <i class="ace-icon fa fa-user"></i>
-                                个人信息
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="/logout">
-                                <i class="ace-icon fa fa-power-off"></i>
-                                注销
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                        <div class="card">
+                            <div class="card-body">
+                                提示提示提示提示提示
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                        <span class="avatar avatar-sm" style="background-image: url(https://picsum.photos/id/1005/200)"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="#" class="dropdown-item">个人信息</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">设置</a>
+                        <a href="#" class="dropdown-item">登出</a>
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-menu" class="collapse navbar-collapse"></div>
         </div>
-
-    </div><!-- /.navbar-container -->
+    </aside>
+    <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-nav flex-row order-md-last">
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                        <span class="badge bg-red"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                        <div class="card">
+                            <div class="card-body">
+                                提示提示提示提示
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                        <span class="avatar avatar-sm" style="background-image: url(https://picsum.photos/id/1005/200)"></span>
+                        <div class="d-xl-block ps-2">
+                            <div>Admin</div>
+                            <div class="mt-1 small text-muted">超级管理员</div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a href="#" class="dropdown-item">个人信息</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">设置</a>
+                        <a href="#" class="dropdown-item">登出</a>
+                    </div>
+                </div>
+            </div>
+            <div id="breadcrumb-menu" class="collapse navbar-collapse" style="position: relative">
+                <!--<ol class="breadcrumb" aria-label="breadcrumbs">
+                    <li class="breadcrumb-item">系统管理</li>
+                    <li class="breadcrumb-item active" aria-current="page">用户管理</li>
+                </ol>-->
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="container-xl">
+            <div class="row row-deck row-cards"></div>
+        </div>
+        <footer class="footer footer-transparent d-print-none">
+            <div class="container">
+                <div class="row text-center align-items-center flex-row-reverse">
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item">
+                                Copyright © 2021 东莞重力科技有限公司.版权所有
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </div>
-
-<div class="main-container ace-save-state" id="main-container">
-
-    <script type="text/javascript">
-        try{ace.settings.loadState('main-container')}catch(e){}
-    </script>
-
-    <div id="sidebar" class="sidebar responsive ace-save-state">
-
-        <ul id="menu" class="nav nav-list">
-            <!-- 最多支持四级菜单 -->
-            <div class="sidebar-collapse">
-                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
-                   data-icon2="icon-double-angle-right"></i>
-            </div>
-        </ul>
-
-        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
-               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="main-content-inner">
-
-            <div class="main-content-inner">
-
-                <ul class="nav-tab">
-                    <li class="left-backward">
-                        <i class="glyphicon glyphicon-backward"></i>
-                    </li>
-                    <li class="right-forward">
-                        <i class="glyphicon glyphicon-forward"></i>
-                    </li>
-                    <li class="middle-tab">
-                        <ul class="nav nav-tabs" role="tablist"></ul>
-                    </li>
-                </ul>
-
-                <div class="tab-content"></div>
-
-            </div>
-
-        </div>
-    </div>
-
-</div><!-- /.main-container -->
-
-<div th:replace="common/index :: common_footer"></div>
+<script th:src="@{/static/jquery/jquery.min.js}"></script>
 <script th:src="@{/static/menu/js/sidebar-menu.js}"></script>
-<script th:src="@{/static/crypto/jQuery.md5.js}"></script>
+<script th:src="@{/static/tabler/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/static/tabler/js/tabler.min.js}"></script>
+<!--<script th:src="@{/static/common/js/index.js}"></script>-->
 <script type="text/javascript" th:inline="javascript">
 
     $(function () {
-
+        var menus = [{
+            id: 0,
+            name: "首页",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6\" /><path d=\"M9 17v1a3 3 0 0 0 6 0v-1\" /></svg>"
+        }, {
+            id: 1,
+            name: "系统管理",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><polyline points=\"9 11 12 14 20 6\" /><path d=\"M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9\" /></svg>",
+            children: [{
+                id: 2,
+                name: "用户管理",
+                url: "",
+            }, {
+                id: 3,
+                name: "角色管理",
+                url: "",
+            }]
+        }, {
+            id: 4,
+            name: "监控管理",
+            url: "",
+            icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><polyline points=\"9 11 12 14 20 6\" /><path d=\"M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9\" /></svg>",
+            children: [{
+                id: 5,
+                name: "登录管理",
+                url: "",
+            }, {
+                id: 6,
+                name: "日志管理",
+                url: "",
+            }]
+        }]
         //初始化菜单栏
-        var menu = $("#menu").sidebarMenu({menus : [[${resourceDTOList}]]});
+        $("#navbar-menu").sidebarMenu({
+            menus: menus,
+            breadcrumbId: "breadcrumb-menu"
+        });
         //点击首页
-        menu.addTabs(1, "首页", "/", false);
 
+        // menu.addTabs(1, "首页", "/welcome", false);
     });
-
 
 
 </script>
