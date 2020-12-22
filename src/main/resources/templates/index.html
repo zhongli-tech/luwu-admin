@@ -2,20 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zn">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Luwu-admin是一款企业级后台管理系统</title>
-    <!-- 图标 -->
-    <link rel="icon" th:href="@{/static/common/img/logo/favicon.ico}" type="image/x-ico"/>
-    <!--<link rel="icon" href="/static/common/img/logo/favicon.ico" type="image/x-ico"/>-->
-    <!-- CSS files -->
-    <link th:href="@{/static/tabler/css/tabler.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/tabler/css/tabler-flags.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/tabler/css/tabler-payments.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/tabler/css/tabler-vendors.min.css}" rel="stylesheet"/>
-    <link th:href="@{/static/tabler/css/demo.css}" rel="stylesheet"/>
-    <link th:href="@{/static/common/css/index.css}" rel="stylesheet"/>
+    <div th:replace="/common/index :: common_header"></div>
 </head>
 <body class="antialiased">
 <div class="page">
@@ -28,7 +16,7 @@
                 <a href=".">
                     <!--<img src="https://preview.tabler.io/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">-->
                     <img th:src="@{/static/common/img/logo/logo-white.png}" width="32" height="32" class="navbar-brand-image"/>
-                    <span class="navbar-brand-title ps-1">Luwu-Admin</span>
+                    <span class="logo-title ps-1">Luwu-Admin</span>
                 </a>
             </h1>
             <div class="navbar-nav flex-row d-lg-none">
@@ -104,16 +92,19 @@
         </div>
     </header>
     <div class="content">
-        <div class="container-xl">
-            <div class="row row-deck row-cards"></div>
+        <!-- 加载动画 -->
+        <div id="main-loading" class="main-loading">
+            <div class="spinner-border" role="status"></div>
         </div>
+        <!-- 页面内容加载在这里 -->
+        <div id="main-container" class="container-xl"></div>
         <footer class="footer footer-transparent d-print-none">
             <div class="container">
                 <div class="row text-center align-items-center flex-row-reverse">
                     <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                         <ul class="list-inline list-inline-dots mb-0">
                             <li class="list-inline-item">
-                                Copyright © 2021 东莞重力科技有限公司.版权所有
+                                Copyright &copy; 2021 东莞重力科技有限公司.版权所有
                             </li>
                         </ul>
                     </div>
@@ -122,18 +113,14 @@
         </footer>
     </div>
 </div>
-<script th:src="@{/static/jquery/jquery.min.js}"></script>
-<script th:src="@{/static/menu/js/sidebar-menu.js}"></script>
-<script th:src="@{/static/tabler/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/static/tabler/js/tabler.min.js}"></script>
-<!--<script th:src="@{/static/common/js/index.js}"></script>-->
+<div th:replace="/common/index :: common_footer"></div>
 <script type="text/javascript" th:inline="javascript">
 
     $(function () {
         var menus = [{
             id: 0,
             name: "首页",
-            url: "",
+            url: "/dashboard",
             icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6\" /><path d=\"M9 17v1a3 3 0 0 0 6 0v-1\" /></svg>"
         }, {
             id: 1,
@@ -143,11 +130,11 @@
             children: [{
                 id: 2,
                 name: "用户管理",
-                url: "",
+                url: "/dashboard",
             }, {
                 id: 3,
                 name: "角色管理",
-                url: "",
+                url: "/dashboard",
             }]
         }, {
             id: 4,
@@ -157,11 +144,11 @@
             children: [{
                 id: 5,
                 name: "登录管理",
-                url: "",
+                url: "/dashboard",
             }, {
                 id: 6,
                 name: "日志管理",
-                url: "",
+                url: "/dashboard",
             }]
         }]
         //初始化菜单栏
@@ -169,8 +156,9 @@
             menus: menus,
             breadcrumbId: "breadcrumb-menu"
         });
-        //点击首页
 
+        //点击首页
+        // $.loadPage()
         // menu.addTabs(1, "首页", "/welcome", false);
     });
 
