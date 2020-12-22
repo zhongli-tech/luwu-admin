@@ -13,15 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Version V1.0
  **/
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class IndexController extends BaseController {
+
+    /**
+     * 登录页面跳转
+     * @return
+     */
+    @GetMapping("/login")
+    public String login() {
+        return "/login";
+    }
+
+    /**
+     * 默认布局页跳转
+     * @return
+     */
+    @GetMapping("/")
+    public String index() {
+        return "/index";
+    }
 
     /**
      * 首页跳转
      * @return
      */
-    @GetMapping("/")
-    public String index() {
+    @GetMapping("/dashboard")
+    public String dashboard() {
         return "/dashboard/index";
     }
 

@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="zn">
 <head>
-    <title>欢迎</title>
-    <div th:replace="common/index :: common_header"></div>
+    <title>首页</title>
+    <div th:replace="/common/index :: common_header"></div>
 </head>
 <body>
-<div id="page-content" class="page-content">
-
-    <div class="page-header">
-        <h1>首页</h1>
+<!-- 页面标题 -->
+<div class="page-header d-print-none">
+    <div class="row align-items-center">
+        <div class="col"><h2 class="page-title">Empty page</h2></div>
     </div>
-
 </div>
-
-<div th:replace="common/index :: common_footer"></div>
+<!-- 页面内容 -->
+<div class="row row-deck row-cards"></div>
+<div th:replace="/common/index :: common_footer"></div>
 <script type="text/javascript" th:inline="javascript">
 
-
-
-
 </script>
-<div th:replace="common/index :: common_footer_copyright"></div>
 </body>
 </html>

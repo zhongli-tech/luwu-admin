@@ -35,16 +35,30 @@
 .navbar-brand .navbar-brand-image {
     display: inline-block;
 }
-.navbar-brand .navbar-brand-title {
-    font-size: 18px;
-    font-weight: 500;
-}
 .navbar-brand a:hover {
     color: #FFF;
     text-decoration: none;
 }
 
+/** 加载动画 **/
+.main-loading {
+    position: absolute;
+    left: 60%;
+    top: 50%;
+}
+/*.main-loading .spinner-grow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}*/
+
 /** 页脚 **/
 .footer {
     padding: 1rem 0;
+}
+
+/** logo标题 **/
+.logo-title {
+    font-size: 18px;
+    font-weight: 500;
 }
