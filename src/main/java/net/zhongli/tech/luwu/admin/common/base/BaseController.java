@@ -7,7 +7,4 @@ package net.zhongli.tech.luwu.admin.common.base;
  **/
 public class BaseController {
 
-    public String toPage(String indexPrefix, String uri) {
-        return indexPrefix + uri;
-    }
 }
