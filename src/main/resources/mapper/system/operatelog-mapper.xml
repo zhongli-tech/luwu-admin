@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.OperateLogMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <select id="queryList" resultType="net.zhongli.tech.luwu.admin.module.system.entity.OperateLogEntity" parameterType="map">
+        SELECT * FROM sys_operate_log
+    </select>
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.OperateLogEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_operate_log(
+            username,
+            description,
+            operate_log_types,
+            method,
+            params,
+            ip
+        )
+        VALUES(
+            #{username},
+            #{description},
+            #{operateLogTypes},
+            #{method},
+            #{params},
+            #{ip}
+        )
+    </insert>
+
+
+</mapper>

@@ -111,28 +111,29 @@ public class WebSecurityConfig<S extends Session> extends WebSecurityConfigurerA
     /**
      * 配置不拦截规则
      * @param web
-     * @throws Exception
      */
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        // 静态资源和 api 请求不拦截
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers(
+                // 所有对外的接口
                 "/api/**",
+                // 静态资源
                 "/static/**",
+                // swagger
                 "/swagger-ui/**",
                 "/swagger-resources/**",
-                "/error/**",
-                "/v3/api-docs/**"
+                "/v3/api-docs/**",
+                // 错误页面
+                "/error/**"
         );
     }
 
     /**
      * 配置自定义登录认证
      * @param auth
-     * @throws Exception
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(loginValidateAuthenticationProvider);
     }
 

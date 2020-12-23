@@ -49,6 +49,12 @@
             <if test="id != null">
                 AND p.id = #{id}
             </if>
+            <if test="parentId != null">
+                AND p.parent_id = #{parentId}
+            </if>
+            <if test="parentId == null">
+                AND p.parent_id IS NULL
+            </if>
             <if test="permissionKey != null and permissionKey != ''">
                 AND permission_key LIKE CONCAT('%', #{permissionKey}, '%')
             </if>
