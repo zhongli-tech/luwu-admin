@@ -57,7 +57,7 @@ public class LoginlogController extends BaseController {
     @PreAuthorize("hasAuthority('system:loginlog:list:post')")
     @PostMapping("/list")
     @ResponseBody
-    public Result<Pager> loginLogList(@RequestBody Pager pager) {
+    public Pager loginLogList(@RequestBody Pager pager) {
         Page<Object> page = PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
         List<LoginlogEntity> loginlogEntityList = this.loginlogService.queryList(pager.getParameters());
         return ResultUtil.page(page, loginlogEntityList);

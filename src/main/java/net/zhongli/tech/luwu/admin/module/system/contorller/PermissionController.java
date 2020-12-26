@@ -71,7 +71,7 @@ public class PermissionController extends BaseController {
     @PreAuthorize("hasAuthority('system:permissions:list:post')")
     @PostMapping("/list")
     @ResponseBody
-    public Result<Pager> permissionList(@RequestBody Pager pager) {
+    public Pager permissionList(@RequestBody Pager pager) {
         Page<Object> page = PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
         List<PermissionEntity> permissionEntityList = this.permissionService.queryList(pager.getParameters());
         return ResultUtil.page(page, permissionEntityList);

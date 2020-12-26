@@ -71,7 +71,7 @@ public class UserController extends BaseController {
     @PreAuthorize("hasAuthority('system:users:list:post')")
     @PostMapping("/list")
     @ResponseBody
-    public Result<Pager> userList(@RequestBody Pager pager) {
+    public Pager userList(@RequestBody Pager pager) {
         Page<Object> page = PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
         List<UserEntity> userEntityList = this.userService.queryList(pager.getParameters());
         return ResultUtil.page(page, userEntityList);

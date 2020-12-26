@@ -70,7 +70,7 @@ public class RoleController extends BaseController {
     @PreAuthorize("hasAuthority('system:roles:list:post')")
     @PostMapping("/list")
     @ResponseBody
-    public Result<Pager> roleList(@RequestBody Pager pager) {
+    public Pager roleList(@RequestBody Pager pager) {
         Pager roleEntityPager = this.roleService.queryList(pager);
         return ResultUtil.page(roleEntityPager);
     }
