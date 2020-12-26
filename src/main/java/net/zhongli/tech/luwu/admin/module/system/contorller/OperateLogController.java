@@ -58,7 +58,7 @@ public class OperateLogController extends BaseController {
     @PreAuthorize("hasAuthority('system:operatelog:list:post')")
     @PostMapping("/list")
     @ResponseBody
-    public Result<Pager> operateLogList(@RequestBody Pager pager) {
+    public Pager operateLogList(@RequestBody Pager pager) {
         Page<Object> page = PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
         List<OperateLogEntity> operateLogEntityList = this.operateLogService.queryList(pager.getParameters());
         return ResultUtil.page(page, operateLogEntityList);

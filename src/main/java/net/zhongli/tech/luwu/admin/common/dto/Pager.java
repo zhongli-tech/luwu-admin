@@ -54,4 +54,14 @@ public class Pager {
      */
     private Map<String, Object> parameters;
 
+    /**
+     * 返回状态码
+     */
+    private Integer code;
+
+    /**
+     * 返回信息
+     */
+    private String message;
+
 }

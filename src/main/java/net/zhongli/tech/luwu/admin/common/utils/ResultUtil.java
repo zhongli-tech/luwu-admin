@@ -50,10 +50,7 @@ public class ResultUtil {
      * @param data
      * @return
      */
-    public static Result<Pager> page(Page<Object> page, Object data) {
-        Result<Pager> r = new Result<>();
-        r.setCode(ResultEnum.SUCCESS.getCode());
-        r.setMessage(ResultEnum.SUCCESS.getMsg());
+    public static Pager page(Page<Object> page, Object data) {
         Pager pager = new Pager();
         pager.setPageNum(page.getPageNum());
         pager.setPageSize(page.getPageSize());
@@ -61,20 +58,20 @@ public class ResultUtil {
         pager.setTotal(page.getTotal());
         pager.setStartRow(page.getStartRow());
         pager.setData(data);
-        r.setData(pager);
-        return r;
+        pager.setCode(ResultEnum.SUCCESS.getCode());
+        pager.setMessage(ResultEnum.SUCCESS.getMsg());
+        return pager;
     }
 
     /**
-     * mybatis RowBound 返回分页
+     * mybatis RowBound / 逻辑分页
+     * 返回分页
      * @return
      */
-    public static Result<Pager> page(Pager pager) {
-        Result<Pager> r = new Result<>();
-        r.setCode(ResultEnum.SUCCESS.getCode());
-        r.setMessage(ResultEnum.SUCCESS.getMsg());
-        r.setData(pager);
-        return r;
+    public static Pager page(Pager pager) {
+        pager.setCode(ResultEnum.SUCCESS.getCode());
+        pager.setMessage(ResultEnum.SUCCESS.getMsg());
+        return pager;
     }
 
     public static <T> Result<T> success(T data) {
