@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.zhongli.tech.luwu.admin.module.system.mapper.ConfigMapper">
+
+    <!-- 使用 Redis 二级缓存 -->
+    <cache type="net.zhongli.tech.luwu.admin.common.cache.MybatisRedisCache" />
+
+    <resultMap type="net.zhongli.tech.luwu.admin.module.system.entity.ConfigEntity" id="configMap">
+        <id property="id" column="id" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="createBy" column="create_by" />
+        <result property="systemName" column="system_name" />
+        <result property="systemVersion" column="system_version" />
+        <result property="systemRecord" column="system_record" />
+        <result property="emailAccount" column="email_account" />
+        <result property="emailPassword" column="email_password" />
+        <result property="emailHost" column="email_host" />
+        <result property="enableRegister" column="enable_register" />
+        <result property="enableCode" column="enable_code" />
+    </resultMap>
+
+
+
+    <select id="findBy" parameterType="map" resultMap="configMap">
+        SELECT
+            *
+        FROM
+            sys_config
+    </select>
+
+
+    <insert id="save" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.ConfigEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT ignore INTO sys_config(
+            system_name,
+            system_version,
+            system_record,
+            email_account,
+            email_password,
+            email_host,
+            enable_register,
+            enable_code
+        ) VALUES
+        (
+            #{systemName},
+            #{systemVersion},
+            #{systemRecord},
+            #{emailAccount},
+            #{emailPassword},
+            #{emailHost},
+            #{enableRegister},
+            #{enableCode}
+        )
+    </insert>
+
+    <update id="update" parameterType="net.zhongli.tech.luwu.admin.module.system.entity.ConfigEntity">
+        UPDATE sys_config
+        <set>
+            <if test="systemName != null and systemName != ''">
+                system_name = #{systemName},
+            </if>
+            <if test="systemVersion != null and systemVersion != ''">
+                system_version = #{systemVersion},
+            </if>
+            <if test="systemRecord != null and systemRecord != ''">
+                system_record = #{systemRecord},
+            </if>
+            <if test="emailAccount != null and emailAccount != ''">
+                email_account = #{emailAccount},
+            </if>
+            <if test="emailPassword != null and emailPassword != ''">
+                email_password = #{emailPassword},
+            </if>
+            <if test="emailHost != null and emailHost != ''">
+                email_host = #{emailHost},
+            </if>
+            <if test="enableRegister != null">
+                enable_register = #{enableRegister},
+            </if>
+            <if test="enableCode != null">
+                enable_code = #{enableCode},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM sys_config WHERE id = #{id}
+    </delete>
+
+</mapper>
