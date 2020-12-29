@@ -63,7 +63,7 @@ public class ConfigController extends BaseController {
      * @param configEntity
      * @return
      */
-    @PreAuthorize("hasAuthority('system:config:get')")
+    @PreAuthorize("hasAuthority('system:config:put')")
     @PutMapping
     @ResponseBody
     public Result<ConfigEntity> update(@RequestBody ConfigEntity configEntity) {
