@@ -12,4 +12,14 @@ public interface RedisKeyConstant {
      */
     String MYBATIS_REDIS_CACHE = "MYBATIS_REDIS_CACHE_%s_%s";
 
+    /**
+     * 系统注册的邮件验证码
+     */
+    String SYSTEM_REGISTER_EMAIL_CODE = "SYSTEM_REGISTER_EMAIL_CODE:%s";
+
+    /**
+     * 记录 email 发送验证码的 ip 地址
+     */
+    String SYSTEM_REGISTER_EMAIL_IP = "SYSTEM_REGISTER_EMAIL_IP:%s";
+
 }

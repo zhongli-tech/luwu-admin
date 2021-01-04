@@ -41,5 +41,12 @@ public interface UserService extends BaseService<UserEntity, Long>, UserDetailsS
      * @return
      */
     int register(RegisterDTO registerDTO);
+
+    /**
+     * 获取邮件验证码
+     * @param email
+     * @return
+     */
+    int createEmailCode(String email);
 }
 
