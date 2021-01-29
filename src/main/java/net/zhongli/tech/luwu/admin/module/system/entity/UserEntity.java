@@ -2,8 +2,10 @@ package net.zhongli.tech.luwu.admin.module.system.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import net.zhongli.tech.luwu.admin.common.base.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -69,12 +71,14 @@ public class UserEntity extends BaseEntity implements UserDetails {
     /**
      * 账号是否被锁定
      */
-    private boolean accountNonLocked = false;
+    @Getter(value = AccessLevel.NONE)
+    private Boolean accountNonLocked = false;
 
     /**
      * 启用账号
      */
-    private boolean enabled = true;
+    @Getter(value = AccessLevel.NONE)
+    private Boolean enabled = true;
 
     /**
      * 用户角色
@@ -94,6 +98,11 @@ public class UserEntity extends BaseEntity implements UserDetails {
         return false;
     }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.accountNonLocked;
+    }
+
     /**
      * 凭证是否过期
      * @return
@@ -101,5 +110,10 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 }
