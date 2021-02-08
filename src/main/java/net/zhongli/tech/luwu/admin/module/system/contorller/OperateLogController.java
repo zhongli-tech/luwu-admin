@@ -37,7 +37,7 @@ public class OperateLogController extends BaseController {
     @PreAuthorize("hasAuthority('system:operatelog:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/operatelog/index";
+        return "operatelog/index";
     }
 
     /**
@@ -47,7 +47,7 @@ public class OperateLogController extends BaseController {
     @PreAuthorize("hasAuthority('system:operatelog:list')")
     @GetMapping("/list.html")
     public String list() {
-        return "/operatelog/list";
+        return "operatelog/list";
     }
 
     /**

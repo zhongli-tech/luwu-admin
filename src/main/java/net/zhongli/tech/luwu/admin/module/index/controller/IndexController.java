@@ -22,7 +22,7 @@ public class IndexController extends BaseController {
      */
     @GetMapping("/login")
     public String login() {
-        return "/login";
+        return "login";
     }
 
     /**
@@ -31,7 +31,7 @@ public class IndexController extends BaseController {
      */
     @GetMapping("/")
     public String index() {
-        return "/index";
+        return "index";
     }
 
     /**
@@ -40,7 +40,7 @@ public class IndexController extends BaseController {
      */
     @GetMapping("/dashboard")
     public String dashboard() {
-        return "/dashboard/index";
+        return "dashboard/index";
     }
 
 }

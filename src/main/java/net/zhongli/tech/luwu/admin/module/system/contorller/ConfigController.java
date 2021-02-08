@@ -33,7 +33,7 @@ public class ConfigController extends BaseController {
     @PreAuthorize("hasAuthority('system:config:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/config/index";
+        return "config/index";
     }
 
     /**
@@ -43,7 +43,7 @@ public class ConfigController extends BaseController {
     @PreAuthorize("hasAuthority('system:config:form')")
     @GetMapping("/form.html")
     public String form() {
-        return "/config/form";
+        return "config/form";
     }
 
     /**

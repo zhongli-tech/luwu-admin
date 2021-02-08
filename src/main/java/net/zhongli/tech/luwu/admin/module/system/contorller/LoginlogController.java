@@ -36,7 +36,7 @@ public class LoginlogController extends BaseController {
     @PreAuthorize("hasAuthority('system:loginlog:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/loginlog/index";
+        return "loginlog/index";
     }
 
     /**
@@ -46,7 +46,7 @@ public class LoginlogController extends BaseController {
     @PreAuthorize("hasAuthority('system:loginlog:list')")
     @GetMapping("/list.html")
     public String list() {
-        return "/loginlog/list";
+        return "loginlog/list";
     }
 
     /**

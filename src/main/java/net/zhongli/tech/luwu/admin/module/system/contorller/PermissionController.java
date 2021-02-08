@@ -40,7 +40,7 @@ public class PermissionController extends BaseController {
     @PreAuthorize("hasAuthority('system:permissions:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/permission/index";
+        return "permission/index";
     }
 
     /**
@@ -50,7 +50,7 @@ public class PermissionController extends BaseController {
     @PreAuthorize("hasAuthority('system:permissions:list')")
     @GetMapping("/list.html")
     public String list() {
-        return "/permission/list";
+        return "permission/list";
     }
 
     /**
@@ -60,7 +60,7 @@ public class PermissionController extends BaseController {
     @PreAuthorize("hasAuthority('system:permissions:form')")
     @GetMapping("/form.html")
     public String form() {
-        return "/permission/form";
+        return "permission/form";
     }
 
     /**
