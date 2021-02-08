@@ -40,7 +40,7 @@ public class UserController extends BaseController {
     @PreAuthorize("hasAuthority('system:users:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/user/index";
+        return "user/index";
     }
 
     /**
@@ -50,7 +50,7 @@ public class UserController extends BaseController {
     @PreAuthorize("hasAuthority('system:users:list')")
     @GetMapping("/list.html")
     public String list(){
-        return "/user/list";
+        return "user/list";
     }
 
     /**
@@ -60,7 +60,7 @@ public class UserController extends BaseController {
     @PreAuthorize("hasAuthority('system:users:form')")
     @GetMapping("/form.html")
     public String form() {
-        return "/user/form";
+        return "user/form";
     }
 
     /**

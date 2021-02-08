@@ -39,7 +39,7 @@ public class RoleController extends BaseController {
     @PreAuthorize("hasAuthority('system:roles:index')")
     @GetMapping("/index.html")
     public String index(Model model) {
-        return "/role/index";
+        return "role/index";
     }
 
     /**
@@ -49,7 +49,7 @@ public class RoleController extends BaseController {
     @PreAuthorize("hasAuthority('system:roles:list')")
     @GetMapping("/list.html")
     public String list() {
-        return "/role/list";
+        return "role/list";
     }
 
     /**
@@ -59,7 +59,7 @@ public class RoleController extends BaseController {
     @PreAuthorize("hasAuthority('system:roles:form')")
     @GetMapping("/form.html")
     public String form() {
-        return "/role/form";
+        return "role/form";
     }
 
     /**

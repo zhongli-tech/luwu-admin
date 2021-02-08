@@ -19,12 +19,12 @@ public class ErrorController extends BaseController {
 
     @GetMapping("/404")
     public ModelAndView pageNoFound() {
-        return new ModelAndView("/error/404");
+        return new ModelAndView("error/404");
     }
 
     @GetMapping("/kickout")
     public String kickout(Model model) {
         model.addAttribute("message", "您已被管理员踢出，请重新登录");
-        return "/error/kickout";
+        return "error/kickout";
     }
 }
